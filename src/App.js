@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import {useContext} from 'react';
+import {store, StateProvider} from './store.js';
+
+const Paragraph = () => {
+  const values = useContext(store);
+  let toggleAction = () => values.dispatch({ type: 'TOGGLE_BOOL', payload: null })
+  return (
+    <>
+      <p>{JSON.stringify(values)}</p>
+      <button onClick={toggleAction}>
+        toggle state
+      </button>
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* It is crucial you wrap any component in a StateProvider if you want to be able to dispatch actions */}
+      <StateProvider>
+        <Paragraph />
+      </StateProvider>
+      <Paragraph />
     </div>
   );
 }
