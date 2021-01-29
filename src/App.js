@@ -24,7 +24,7 @@ const DispatchCapableButton = () => {
 function App() {
   return (
     <div className="App">
-      {/* It is crucial you wrap any component in a StateProvider if you want to be able to dispatch actions */}
+      {/* It is crucial you wrap any component in a StateProvider if you want to be able to dispatch actions or subscribe to the context */}
       <StateProvider>
         <SubscribedComponent />
         <DispatchCapableButton />
